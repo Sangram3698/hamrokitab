@@ -11,14 +11,14 @@ const Slider = () => {
 
   const handleClick=(direction)=>{
     if(direction==="left"){
-      setSlideIndex(slideIndex-1);
+      setSlideIndex(slideIndex >0?slideIndex-1:2);
     }else{
-      setSlideIndex(slideIndex+1);
+      setSlideIndex(slideIndex<2?slideIndex+1:0);
     }
   }
   return (
     <div className="slider-component">
-      {slideIndex!==0 && <BsChevronDoubleRight className="arrow-right" onClick={()=>{handleClick("left")}}/>}
+      <BsChevronDoubleRight className="arrow-right" onClick={()=>{handleClick("left")}}/>
       <div style={{transform:`translateX(${slideIndex*-100}vw)`}} className="slider-wrapper">
         {/* first one */}
         <div className="slide first-slide">
@@ -65,7 +65,7 @@ const Slider = () => {
         </div>
 
       </div>
-     {slideIndex!==2 &&  <BsChevronDoubleLeft className="arrow-left" onClick={()=>handleClick("right")}/>}
+   <BsChevronDoubleLeft className="arrow-left" onClick={()=>handleClick("right")}/>
     </div>
   )
 }
